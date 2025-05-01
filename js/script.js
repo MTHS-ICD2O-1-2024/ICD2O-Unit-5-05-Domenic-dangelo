@@ -11,34 +11,38 @@
  */
 // eslint-disable-next-line no-unused-vars
 function calculate() {
-  const aLength = parseFloat(document.getElementById('a-length').value)
-  const bLength = parseFloat(document.getElementById('b-length').value)
-  const cLength = parseFloat(document.getElementById('c-length').value)
+  const lengthA = parseFloat(document.getElementById("sideA").value)
+  const lengthB = parseFloat(document.getElementById("sideB").value)
+  const lengthC = parseFloat(document.getElementById("sideC").value)
 
   // using the cosine law
+  const angleA = Math.acos((lengthB**2 + lengthC**2 - lengthA**2) / (2 * lengthB * lengthC)) * (180/Math.PI)
+  const angleB = Math.acos((lengthC**2 + lengthA**2 - lengthB**2) / (2 * lengthC * lengthA)) * (180/Math.PI)
+  const angleC = Math.acos((lengthA**2 + lengthB**2 - lengthC**2) / (2 * lengthA * lengthB)) * (180/Math.PI)
 
-const aAngle = Math.acos((bLength**2 + cLength**2 - aLength**2) / (2 * bLength * cLength)) * (180/Math.PI)
-const bAngle = Math.acos((cLength**2 + aLength**2 - bLength**2) / (2 * cLength * aLength)) * (180/Math.PI)
-const cAngle = Math.acos((aLength**2 + bLength**2 - cLength**2) / (2 * aLength * bLength)) * (180/Math.PI)
+  const sumOfAngles = Number((angleA).toFixed(2)) + Number((angleB).toFixed(2)) + Number((angleC).toFixed(2))
 
-const sumOfAngles = Number((aAngle).toFixed(2)) + Number((bAngle).toFixed(2)) + Number((cAngle).toFixed(2))
+  console.log(angleA)
+  console.log(angleB)
+  console.log(angleC)
+  console.log(sumOfAngles)
 
   if (sumOfAngles == 180) {
-    if ((aAngle == bAngle) && (aAngle == cAngle)) {
-      document.getElementById("answer").innerHTML =
+    if ((angleA == angleB) && (angleA == angleC)) {
+      document.getElementById("result").innerHTML =
       'This is an equilateral  triangle!'
-    } else if ((aAngle == bAngle) || (aAngle == cAngle) || (bAngle == cAngle)) {
-      document.getElementById("answer").innerHTML =
+    } 
+    else if ((angleA == angleB) || (angleA == angleC) || (angleB == angleC)) {
+      document.getElementById("result").innerHTML =
       'This is an isosceles triangle!'
-    } else if ((aAngle != bAngle) || (aAngle != cAngle) || (bAngle != cAngle)) {
-      document.getElementById("answer").innerHTML =
+    } 
+    else if ((angleA != angleB) || (angleA != angleC) || (angleB != angleC)) {
+      document.getElementById("result").innerHTML =
       'This is a scalene triangle!'
-    } else {
-      document.getElementById("answer").innerHTML =
-      'You should not be here!'
     }
-  } else {
-    document.getElementById("answer").innerHTML =
+  } 
+  else {
+    document.getElementById("result").innerHTML =
     'This is not a triangle!'
   }
 }
