@@ -36,7 +36,7 @@ function calculate() {
       document.getElementById("result").innerHTML =
       'This is an isosceles triangle!'
     } 
-    else if ((angleA != angleB) || (angleA != angleC) || (angleB != angleC)) {
+    else {
       document.getElementById("result").innerHTML =
       'This is a scalene triangle!'
     }
